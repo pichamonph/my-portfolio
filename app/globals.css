@@ -100,13 +100,14 @@ body {
 .page-intro {
   position: fixed;
   inset: 0;
-  background: #1C315E;
+  background: #ffffff;
   z-index: 9999;
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: curtainUp 0.7s cubic-bezier(0.76, 0, 0.24, 1) 1.8s both;
+  overflow: hidden;
 }
 
 .page-intro-monogram {
@@ -119,7 +120,7 @@ body {
 
 .page-intro-firstname {
   color: #ffffff;
-  font-size: 2.25rem;
+  font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.1;
@@ -129,7 +130,7 @@ body {
 
 .page-intro-lastname {
   color: rgba(255, 255, 255, 0.55);
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2vw, 1.5rem);
   font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -138,16 +139,16 @@ body {
 }
 
 .page-intro-divider {
-  width: 32px;
+  width: clamp(32px, 4vw, 56px);
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
-  margin: 10px 0 8px;
+  margin: 14px 0 10px;
   animation: monogramFadeIn 0.45s ease-out 0.22s both;
 }
 
 .page-intro-label {
   color: rgba(255, 255, 255, 0.25);
-  font-size: 0.55rem;
+  font-size: clamp(0.55rem, 1vw, 0.8rem);
   letter-spacing: 0.45em;
   font-family: var(--font-geist-sans);
   animation: monogramFadeIn 0.45s ease-out 0.28s both;

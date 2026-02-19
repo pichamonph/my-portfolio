@@ -20,6 +20,10 @@ export const metadata: Metadata = {
     "Computer Science student with experience in frontend development and growing in full-stack development",
 };
 
+export const viewport = {
+  themeColor: "#ffffff",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

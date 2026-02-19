@@ -89,64 +89,82 @@ export default function Home() {
       <section id="home" className="relative flex flex-col px-4 sm:px-6 py-16 md:h-screen md:py-6">
         <div className="flex-1 flex flex-col justify-center gap-6">
         <div className="max-w-6xl mx-auto w-full">
-          <div className="relative bg-[#1C315E] rounded-3xl shadow-lg overflow-hidden animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-            <div className="relative flex flex-col md:flex-row items-end md:items-end">
-              {/* Text content */}
-              <div className="flex-1 text-center md:text-left p-6 md:p-10 pb-6">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFFFF] leading-tight mb-4">
-                  Pichamon
-                  <br />
-                  Phongsethasant
-                </h1>
-
-                <div className="w-20 h-1 bg-[#FFFFFF]/40 rounded-full mb-6 mx-auto md:mx-0" />
-
-                <p className="text-sm md:text-lg text-[#FFFFFF]/70 leading-relaxed mb-8 max-w-lg">
-                  Computer Science student with experience in frontend
-                  development and growing in full-stack development
-                </p>
-
-                <div className="flex gap-4 justify-center md:justify-start flex-wrap">
-                  <a
-                    href="https://github.com/pichamonph"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFFFFF] text-[#1C315E] rounded-xl font-medium hover:bg-[#E6EAF2] hover:scale-105 active:scale-95 transition-all duration-200 shadow-md"
-                  >
-                    <GithubIcon />
-                    GitHub
-                  </a>
-                  <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#FFFFFF] rounded-xl font-medium border-2 border-[#FFFFFF]/30 hover:border-[#FFFFFF] hover:bg-[#FFFFFF]/10 hover:scale-105 active:scale-95 transition-all duration-200"
-                  >
-                    <DownloadIcon />
-                    Resume
-                  </a>
-                  <a
-                    href="/transcript.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#FFFFFF] rounded-xl font-medium border-2 border-[#FFFFFF]/30 hover:border-[#FFFFFF] hover:bg-[#FFFFFF]/10 hover:scale-105 active:scale-95 transition-all duration-200"
-                  >
-                    <DownloadIcon />
-                    Transcript
-                  </a>
+          <div className="relative animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+            {/* Card background — overflow-hidden only for bg shape */}
+            <div className="bg-[#1C315E] rounded-3xl shadow-lg overflow-hidden">
+              <div className="flex flex-col md:flex-row md:items-end">
+                {/* Mobile image — top of card */}
+                <div className="flex md:hidden justify-center pt-6">
+                  <Image
+                    src="/images/indy.png"
+                    alt="Pichamon Phongsethasant"
+                    width={400}
+                    height={400}
+                    className="w-[180px] h-[180px] object-cover object-top rounded-2xl"
+                    priority
+                  />
                 </div>
-              </div>
 
-              {/* Profile photo — anchored to bottom */}
-              <div className="hidden md:block flex-shrink-0 self-end">
-                <Image
-                  src="/images/me.png"
-                  alt="Pichamon Phongsethasant"
-                  width={280}
-                  height={340}
-                  className="w-[280px] h-auto object-contain object-bottom"
-                  priority
-                />
+                {/* Text content */}
+                <div className="flex-1 text-center md:text-left p-6 md:p-10 pb-6 md:max-w-xl">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFFFF] leading-tight mb-4">
+                    Pichamon
+                    <br />
+                    Phongsethasant
+                  </h1>
+
+                  <div className="w-20 h-1 bg-[#FFFFFF]/40 rounded-full mb-6 mx-auto md:mx-0" />
+
+                  <p className="text-sm md:text-lg text-[#FFFFFF]/70 leading-relaxed mb-8 max-w-lg">
+                    Computer Science student with experience in frontend
+                    development and growing in full-stack development
+                  </p>
+
+                  <div className="flex gap-4 justify-center md:justify-start flex-wrap">
+                    <a
+                      href="https://github.com/pichamonph"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFFFFF] text-[#1C315E] rounded-xl font-medium hover:bg-[#E6EAF2] hover:scale-105 active:scale-95 transition-all duration-200 shadow-md"
+                    >
+                      <GithubIcon />
+                      GitHub
+                    </a>
+                    <a
+                      href="/resume.pdf"
+                      target="_blank"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#FFFFFF] rounded-xl font-medium border-2 border-[#FFFFFF]/30 hover:border-[#FFFFFF] hover:bg-[#FFFFFF]/10 hover:scale-105 active:scale-95 transition-all duration-200"
+                    >
+                      <DownloadIcon />
+                      Resume
+                    </a>
+                    <a
+                      href="/transcript.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#FFFFFF] rounded-xl font-medium border-2 border-[#FFFFFF]/30 hover:border-[#FFFFFF] hover:bg-[#FFFFFF]/10 hover:scale-105 active:scale-95 transition-all duration-200"
+                    >
+                      <DownloadIcon />
+                      Transcript
+                    </a>
+                  </div>
+                </div>
+
+                {/* Spacer to reserve space for the absolute image on desktop */}
+                <div className="hidden md:block w-[440px] h-[300px] shrink-0" />
               </div>
+            </div>
+
+            {/* Profile photo — outside overflow-hidden, desktop only */}
+            <div className="absolute bottom-0 right-6 hidden md:block pointer-events-none">
+              <Image
+                src="/images/indy.png"
+                alt="Pichamon Phongsethasant"
+                width={680}
+                height={820}
+                className="w-[440px] h-auto object-contain object-bottom"
+                priority
+              />
             </div>
           </div>
         </div>
