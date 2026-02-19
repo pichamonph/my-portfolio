@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1C315E;
 }
 
 @theme inline {
@@ -12,15 +12,191 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #1C315E;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ─── Page intro curtain ─── */
+@keyframes curtainUp {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-105%); }
+}
+
+@keyframes monogramFadeOut {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.9); }
+}
+
+@keyframes monogramFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-intro {
+  position: fixed;
+  inset: 0;
+  background: #1C315E;
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: curtainUp 0.7s cubic-bezier(0.76, 0, 0.24, 1) 1.8s both;
+}
+
+.page-intro-monogram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  animation: monogramFadeOut 0.35s ease-in 1.6s both;
+}
+
+.page-intro-firstname {
+  color: #ffffff;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  font-family: var(--font-geist-sans);
+  animation: monogramFadeIn 0.45s ease-out 0.05s both;
+}
+
+.page-intro-lastname {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-family: var(--font-geist-sans);
+  animation: monogramFadeIn 0.45s ease-out 0.15s both;
+}
+
+.page-intro-divider {
+  width: 32px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 10px 0 8px;
+  animation: monogramFadeIn 0.45s ease-out 0.22s both;
+}
+
+.page-intro-label {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.55rem;
+  letter-spacing: 0.45em;
+  font-family: var(--font-geist-sans);
+  animation: monogramFadeIn 0.45s ease-out 0.28s both;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(100%) scale(0.4);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes bubbleSway {
+  0%, 100% { translate: 0 0; }
+  25% { translate: 15px 0; }
+  75% { translate: -15px 0; }
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), rgba(255,255,255,0.05));
+  border: 1px solid rgba(255,255,255,0.15);
+  animation: bubbleRise var(--duration) ease-in infinite var(--delay),
+             bubbleSway var(--sway) ease-in-out infinite var(--delay);
+}
+
+.bubble-1  { --duration: 8s;  --delay: 0s;    --sway: 4s;  left: 5%;   width: 20px; height: 20px; }
+.bubble-2  { --duration: 10s; --delay: 1s;    --sway: 5s;  left: 15%;  width: 35px; height: 35px; }
+.bubble-3  { --duration: 7s;  --delay: 2s;    --sway: 3.5s; left: 25%;  width: 14px; height: 14px; }
+.bubble-4  { --duration: 12s; --delay: 0.5s;  --sway: 6s;  left: 35%;  width: 45px; height: 45px; }
+.bubble-5  { --duration: 9s;  --delay: 3s;    --sway: 4.5s; left: 45%;  width: 25px; height: 25px; }
+.bubble-6  { --duration: 11s; --delay: 1.5s;  --sway: 5.5s; left: 55%;  width: 18px; height: 18px; }
+.bubble-7  { --duration: 8s;  --delay: 4s;    --sway: 3s;  left: 65%;  width: 40px; height: 40px; }
+.bubble-8  { --duration: 13s; --delay: 2.5s;  --sway: 6.5s; left: 75%;  width: 12px; height: 12px; }
+.bubble-9  { --duration: 10s; --delay: 0.8s;  --sway: 4s;  left: 85%;  width: 30px; height: 30px; }
+.bubble-10 { --duration: 9s;  --delay: 3.5s;  --sway: 5s;  left: 92%;  width: 22px; height: 22px; }
+.bubble-11 { --duration: 14s; --delay: 5s;    --sway: 7s;  left: 10%;  width: 50px; height: 50px; }
+.bubble-12 { --duration: 7s;  --delay: 6s;    --sway: 3s;  left: 50%;  width: 16px; height: 16px; }
+.bubble-13 { --duration: 11s; --delay: 4.5s;  --sway: 5s;  left: 70%;  width: 28px; height: 28px; }
+.bubble-14 { --duration: 9s;  --delay: 7s;    --sway: 4s;  left: 30%;  width: 10px; height: 10px; }
+.bubble-15 { --duration: 12s; --delay: 2s;    --sway: 6s;  left: 60%;  width: 38px; height: 38px; }
