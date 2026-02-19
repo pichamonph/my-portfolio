@@ -131,7 +131,7 @@ export default function Home() {
                       GitHub
                     </a>
                     <a
-                      href="/resume.pdf"
+                      href="/Pichamon_Phongsethasant_Resume.pdf"
                       target="_blank"
                       className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-[#FFFFFF] rounded-xl font-medium border-2 border-[#FFFFFF]/30 hover:border-[#FFFFFF] hover:bg-[#FFFFFF]/10 hover:scale-105 active:scale-95 transition-all duration-200"
                     >
