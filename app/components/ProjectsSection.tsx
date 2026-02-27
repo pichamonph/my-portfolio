@@ -265,14 +265,25 @@ const smallProjects: Project[] = [
 /* ─── Image Carousel ─── */
 function ImageCarousel({ images, name }: { images: string[]; name: string }) {
   const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number>(0);
 
   const prev = useCallback(() => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1)), [images.length]);
   const next = useCallback(() => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1)), [images.length]);
 
+  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+  };
+
   if (images.length === 0) return null;
 
   return (
-    <div className="relative w-full h-48 md:h-72 bg-[#F8F9FC] rounded-t-2xl overflow-hidden group/carousel">
+    <div
+      className="relative w-full h-48 md:h-72 bg-[#F8F9FC] rounded-t-2xl overflow-hidden group/carousel"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Current image */}
       <Image
         src={images[current]}
@@ -329,9 +340,16 @@ function ImageCarousel({ images, name }: { images: string[]; name: string }) {
 /* ─── Phone Carousel (for mobile app projects) ─── */
 function PhoneCarousel({ images, name }: { images: string[]; name: string }) {
   const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number>(0);
 
   const prev = useCallback(() => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1)), [images.length]);
   const next = useCallback(() => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1)), [images.length]);
+
+  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+  };
 
   if (images.length === 0) return null;
 
@@ -359,7 +377,11 @@ function PhoneCarousel({ images, name }: { images: string[]; name: string }) {
           <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-16 h-[18px] bg-[#000000] rounded-full z-10" />
 
           {/* Screen */}
-          <div className="w-full h-full overflow-hidden bg-[#000000] relative group/phone rounded-[29px]">
+          <div
+            className="w-full h-full overflow-hidden bg-[#000000] relative group/phone rounded-[29px]"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <Image
               src={images[current]}
               alt={`${name} - ${current + 1}`}

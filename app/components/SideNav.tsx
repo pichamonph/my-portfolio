@@ -77,7 +77,7 @@ export default function SideNav() {
       {/* ─── Mobile toggle button ─── */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed bottom-6 left-6 z-50 md:hidden w-11 h-11 rounded-full bg-white border border-[#E5EAF5] flex items-center justify-center text-[#1C315E]"
+        className="fixed bottom-6 right-6 z-50 lg:hidden w-11 h-11 rounded-full bg-white border border-[#E5EAF5] flex items-center justify-center text-[#1C315E]"
         style={{ boxShadow: "0 4px 16px rgba(28,49,94,0.12)" }}
         aria-label="Toggle navigation"
       >
@@ -95,7 +95,7 @@ export default function SideNav() {
       {/* ─── Mobile overlay ─── */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-30 bg-black/10 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-30 bg-black/10 backdrop-blur-sm lg:hidden"
           onClick={() => setMobileOpen(false)}
         />
       )}
@@ -106,10 +106,10 @@ export default function SideNav() {
           fixed z-40 flex flex-col items-center gap-1.5 p-1.5
           bg-white/90 backdrop-blur-md border border-[#E5EAF5] rounded-2xl
           transition-all duration-300 ease-out
-          left-6 bottom-20 md:bottom-auto md:top-1/2 md:-translate-y-1/2
+          right-6 bottom-20 lg:right-auto lg:left-6 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2
           ${mobileOpen
             ? "opacity-100"
-            : "opacity-0 pointer-events-none md:pointer-events-auto md:opacity-100"
+            : "opacity-0 pointer-events-none lg:pointer-events-auto lg:opacity-100"
           }
         `}
         style={{ boxShadow: "0 8px 24px rgba(28,49,94,0.08)" }}
